@@ -34,7 +34,7 @@ import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_hourglass()
+    #run_test_hourglass()
     run_test_many_hourglasses()
 
 
@@ -118,7 +118,7 @@ def hourglass(window, n, point, radius, color):
             end = rg.Point(point.x - radius, point.y)
             line = rg.Line(start, end)
             line.attach_to(window)
-            window.render(0.1)
+            window.render()
             point.x = point.x + 2 * radius
 
     point.x = original_x
@@ -136,7 +136,7 @@ def hourglass(window, n, point, radius, color):
             end = rg.Point(point.x - radius, point.y)
             line = rg.Line(start, end)
             line.attach_to(window)
-            window.render(0.1)
+            window.render()
             point.x = point.x + 2 * radius
 
 
@@ -217,6 +217,16 @@ def many_hourglasses(window, square, m, colors):
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
 
+    square.attach_to(window)
+    window.render()
+
+    radius = square.length_of_each_side
+    upper_left = (square.center + radius / 2, square.center - math.sqrt(3) / 2 * radius - radius / 2)
+    bottom_right = (square.center + radius * 5 / 2, square.center + math.sqrt(3) / 2 * radius + radius / 2)
+
+    for k in range(m):
+        rectangle = rg.Rectangle(upper_left, bottom_right)
+        rectangle.attach_to(window)
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
